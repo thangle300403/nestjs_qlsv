@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Edit Student</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input {
+      padding: 6px;
+      width: 300px;
+      margin-top: 5px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 8px 12px;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Edit Student</h1>
+
+  <form method="POST">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" value="<%= student.name %>" required>
+
+    <label for="gender">Gender</label>
+    <select name="gender" id="gender" required>
+      <option value="nam" <%= student.gender === 'nam' ? 'selected' : '' %>>Nam</option>
+      <option value="nữ" <%= student.gender === 'nữ' ? 'selected' : '' %>>Nữ</option>
+      <option value="khác" <%= student.gender === 'khác' ? 'selected' : '' %>>Khác</option>
+    </select>
+
+    <label for="birthday">Birthday</label>
+    <input type="date" name="birthday" id="birthday" value="<%= student.birthday.toISOString().split('T')[0] %>" required>
+    <br>
+    <button type="submit">Save</button>
+  </form>
+
+</body>
+
+</html>

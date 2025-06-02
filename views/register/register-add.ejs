@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Thêm đăng ký môn học</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    select,
+    button {
+      padding: 8px;
+      width: 300px;
+      margin-top: 5px;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Thêm đăng ký môn học</h1>
+
+  <form method="POST" action="/register/add">
+    <label for="student">Tên sinh viên</label>
+    <select name="studentId" id="student" required>
+      <option value="">Vui lòng chọn sinh viên</option>
+      <% students.forEach(student => { %>
+      <option value="<%= student.id %>"><%= student.name %></option>
+      <% }) %>
+    </select>
+
+    <label for="subject">Tên môn học</label>
+    <select name="subjectId" id="subject" required>
+      <option value="">Vui lòng chọn môn học</option>
+      <% subjects.forEach(subject => { %>
+      <option value="<%= subject.id %>"><%= subject.name %></option>
+      <% }) %>
+    </select>
+    <br>
+    <button type="submit">Lưu</button>
+  </form>
+
+</body>
+
+</html>

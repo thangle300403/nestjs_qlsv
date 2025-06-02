@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>MyApp</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background-color: #333;
+      padding: 10px 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-right: 20px;
+    }
+
+    nav a.active {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="/student" class="<%= currentPath.startsWith('/student') ? 'active' : '' %>">Students</a>
+    <a href="/subject" class="<%= currentPath.startsWith('/subject') ? 'active' : '' %>">Subjects</a>
+    <a href="/register" class="<%= currentPath.startsWith('/register') ? 'active' : '' %>">Registers</a>
+  </nav>
+
+  <main style="padding: 20px;">
+    <%- body %>
+  </main>
+
+</body>
+
+</html>

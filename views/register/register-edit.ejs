@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Edit Register</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input {
+      padding: 6px;
+      width: 300px;
+      margin-top: 5px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 8px 12px;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Edit Register ID: <%= register.id %></h1>
+
+  <label for="studentName">Student Name:</label>
+  <h3><%= register.student.name %></h3>
+
+  <label for="subjectName">Subject Name:</label>
+  <h3><%= register.subject.name %></h3>
+
+  <form method="POST">
+
+    <label for="birthday">Score</label>
+    <input type="number" name="score" id="score" value="<%= register.score %>" required>
+    <br>
+    <button type="submit">Save</button>
+  </form>
+
+</body>
+
+</html>

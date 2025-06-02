@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Students</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+
+    button {
+      padding: 6px 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .pagination {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    input[type="search"] {
+      padding: 8px;
+      width: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Students</h1>
+  <form method="GET" action="/student">
+    <input type="search" name="search" placeholder="Search students..." value="<%= search %>" />
+    <button type="submit">Search</button>
+  </form>
+  <br>
+  <a href="/student/add">
+    <button style="margin-bottom: 10px;">Add Student</button>
+  </a>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Birthday</th>
+        <th>Gender</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% students.forEach(student => { %>
+      <tr>
+        <td><%= student.id %></td>
+        <td><%= student.name %></td>
+        <td><%= student.birthday %></td>
+        <td><%= student.gender %></td>
+        <td>
+          <form method="GET" action="/student/edit/<%= student.id %>" style="display:inline;">
+            <button type="submit">Edit</button>
+          </form>
+          <form method="POST" action="/student/delete/<%= student.id %>" style="display:inline; margin-left: 5px;" onsubmit="return confirm('Are you sure you want to delete this student?');">
+            <button type="submit" style="background-color: #dc3545;">Delete</button>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <% if (page > 1) { %>
+    <a href="/student?page=<%= page - 1 %>&search=<%= search %>">
+      <button>Previous</button>
+    </a>
+    <% } else { %>
+    <button disabled>Previous</button>
+    <% } %>
+
+    Page <%= page %> of <%= totalPages %>
+
+    <% if (page < totalPages) { %>
+    <a href="/student?page=<%= page + 1 %>&search=<%= search %>">
+      <button>Next</button>
+    </a>
+    <% } else { %>
+    <button disabled>Next</button>
+    <% } %>
+  </div>
+</body>
+
+</html>
