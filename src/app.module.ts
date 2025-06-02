@@ -8,6 +8,9 @@ import { StudentController } from './student.controller';
 import { SubjectController } from './subject.controller';
 import { RegisterController } from './register.controller';
 import { AppController } from './app.controller';
+import { StudentApiController } from './api/student/student.api.controller';
+import { SubjectApiController } from './api/subject/subject.api.controller';
+import { RegisterApiController } from './api/register/register.api.controller';
 
 @Module({
   imports: [
@@ -32,6 +35,9 @@ import { AppController } from './app.controller';
     SubjectController,
     RegisterController,
     AppController,
+    StudentApiController,
+    SubjectApiController,
+    RegisterApiController,
   ],
 })
 export class AppModule {}

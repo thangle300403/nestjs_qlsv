@@ -86,7 +86,7 @@
 
   <div class="pagination">
     <% if (page > 1) { %>
-    <a href="/student?page=<%= page - 1 %>&search=<%= search %>">
+    <a href="/subject?page=<%= page - 1 %>&search=<%= search %>">
       <button>Previous</button>
     </a>
     <% } else { %>
@@ -96,7 +96,7 @@
     Page <%= page %> of <%= totalPages %>
 
     <% if (page < totalPages) { %>
-    <a href="/student?page=<%= page + 1 %>&search=<%= search %>">
+    <a href="/subject?page=<%= page + 1 %>&search=<%= search %>">
       <button>Next</button>
     </a>
     <% } else { %>
