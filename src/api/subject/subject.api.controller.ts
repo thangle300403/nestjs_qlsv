@@ -14,6 +14,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Like } from 'typeorm';
 import { Subject } from '../../entities/subject.entity';
 import { Register } from '../../entities/register.entity';
+import { SubjectPayload } from '../../types';
 
 @Controller('subjects')
 export class SubjectApiController {
@@ -57,7 +58,7 @@ export class SubjectApiController {
 
   @Post()
   async createSubject(
-    @Body() body: { name: string; number_of_credit: number },
+    @Body() body: SubjectPayload,
   ) {
     const subject = this.subjectRepo.create({
       name: body.name,
@@ -74,7 +75,7 @@ export class SubjectApiController {
   @Put('/:id')
   async updateSubject(
     @Param('id') id: number,
-    @Body() body: { name: string; number_of_credit: number },
+    @Body() body: SubjectPayload,
   ) {
     const subject = await this.subjectRepo.findOneBy({ id });
 

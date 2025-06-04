@@ -15,6 +15,7 @@ import { Repository } from 'typeorm';
 import { Register } from '../../entities/register.entity';
 import { Student } from '../../entities/student.entity';
 import { Subject } from '../../entities/subject.entity';
+import { RegisterCreatePayload } from '../../types';
 
 @Controller('registers')
 export class RegisterApiController {
@@ -73,12 +74,7 @@ export class RegisterApiController {
 
   @Post()
   async createRegister(
-    @Body()
-    body: {
-      studentId: number;
-      subjectId: number;
-      score: number;
-    },
+    @Body() body: RegisterCreatePayload,
   ) {
     const student = await this.studentRepo.findOneBy({ id: body.studentId });
     const subject = await this.subjectRepo.findOneBy({ id: body.subjectId });
@@ -107,12 +103,7 @@ export class RegisterApiController {
   @Put('/:id')
   async updateRegister(
     @Param('id') id: number,
-    @Body()
-    body: {
-      studentId: number;
-      subjectId: number;
-      score: number;
-    },
+    @Body() body: RegisterCreatePayload,
   ) {
     const register = await this.registerRepo.findOne({
       where: { id },
