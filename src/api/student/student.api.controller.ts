@@ -14,6 +14,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Like } from 'typeorm';
 import { Student } from '../../entities/student.entity';
 import { Register } from '../../entities/register.entity';
+import { StudentPayload } from '../../types';
 
 @Controller('students')
 export class StudentApiController {
@@ -60,7 +61,7 @@ export class StudentApiController {
 
   @Post()
   async createStudent(
-    @Body() body: { name: string; birthday: string; gender: string },
+    @Body() body: StudentPayload,
   ) {
     const student = this.studentRepo.create({
       name: body.name,
@@ -79,7 +80,7 @@ export class StudentApiController {
   @Put('/:id')
   async updateStudent(
     @Param('id') id: number,
-    @Body() body: { name: string; birthday: string; gender: string },
+    @Body() body: StudentPayload,
   ) {
     const student = await this.studentRepo.findOneBy({ id });
 

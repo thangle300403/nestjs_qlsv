@@ -16,6 +16,7 @@ import { Subject } from './entities/subject.entity';
 import { Register } from './entities/register.entity';
 import { Response } from 'express';
 import { Request } from 'express';
+import { SubjectPayload } from './types';
 
 @Controller('subject')
 export class SubjectController {
@@ -66,7 +67,7 @@ export class SubjectController {
   // POST /subject/add → redirect to /subject
   @Post('/add')
   @Redirect('/subject')
-  async addSubject(@Body() body: { name: string; number_of_credit: number }) {
+  async addSubject(@Body() body: SubjectPayload) {
     const subject = this.subjectRepo.create({
       name: body.name,
       number_of_credit: body.number_of_credit,
@@ -87,7 +88,7 @@ export class SubjectController {
   @Redirect('/subject')
   async updateSubject(
     @Param('id') id: number,
-    @Body() body: { name: string; number_of_credit: number },
+    @Body() body: SubjectPayload,
   ) {
     await this.subjectRepo.update(id, {
       name: body.name,

@@ -17,6 +17,7 @@ import { Register } from './entities/register.entity';
 import { Response } from 'express';
 import { Request } from 'express';
 import { Like } from 'typeorm';
+import { StudentPayload } from './types';
 
 @Controller('student')
 export class StudentController {
@@ -67,7 +68,7 @@ export class StudentController {
   @Post('/add')
   @Redirect('/student')
   async addStudent(
-    @Body() body: { name: string; birthday: string; gender: string },
+    @Body() body: StudentPayload,
   ) {
     const student = this.studentRepo.create({
       name: body.name,
@@ -91,7 +92,7 @@ export class StudentController {
   @Redirect('/student')
   async updateStudent(
     @Param('id') id: number,
-    @Body() body: { name: string; birthday: string; gender: string },
+    @Body() body: StudentPayload,
   ) {
     await this.studentRepo.update(id, {
       name: body.name,

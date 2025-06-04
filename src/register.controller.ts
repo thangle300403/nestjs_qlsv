@@ -17,6 +17,7 @@ import { Request } from 'express';
 import { Student } from './entities/student.entity';
 import { Subject } from './entities/subject.entity';
 import { Response as ExpressResponse } from 'express';
+import { RegisterCreatePayload, RegisterScorePayload } from './types';
 
 @Controller('register')
 export class RegisterController {
@@ -77,7 +78,7 @@ export class RegisterController {
   @Post('/add')
   @Redirect('/register')
   async addRegister(
-    @Body() body: { studentId: number; subjectId: number },
+    @Body() body: RegisterCreatePayload,
     @Res() res: ExpressResponse,
   ) {
     // Check if a register already exists
@@ -122,7 +123,7 @@ export class RegisterController {
   @Redirect('/register')
   async updateRegister(
     @Param('id') id: number,
-    @Body() body: { score: number },
+    @Body() body: RegisterScorePayload,
   ) {
     await this.registerRepo.update(id, {
       score: body.score,
